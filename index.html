@@ -41,7 +41,18 @@
         height: auto;
     }
     .input-button {
-        font-size: 50px;
+        font-size: 55px;
+        margin: 10px;
+    }
+    #sayit {
+        display: inline-block;
+        background-color: green;
+        border-radius: 5px;
+        color: #fff;
+        padding: 8px 50px;
+        display: none;
+        font-size: 60px;
+        text-decoration: none;
     }
 </style>
 </head>
@@ -74,6 +85,7 @@
     <a href="https://x.com/mar_mafla">@mar_mafla<a>
 </p>
 
+<a id="sayit" href="https://twitter.com/intent/tweet?text=Achieved through a lightweight online trainer, thanks to @marmafla / HamsterKombat hamsters notcoin ">say it out loud!</a>
 
 <script>
 document.querySelectorAll('.draggable').forEach(draggable => {
@@ -130,6 +142,7 @@ document.querySelectorAll('.draggable').forEach(draggable => {
         if (draggable.isDragging) {
             draggable.isDragging = false;
             snapToGrid(draggable);
+            checkLastMove(draggable);
             if (checkForOverlap(draggable)) {
                 // Si hay superposición, revertir a la posición inicial
                 draggable.style.left = draggable.initialLeft;
@@ -147,7 +160,20 @@ function snapToGrid(element) {
     element.style.left = closestX + 'px';
     element.style.top = closestY + 'px';
 }
-
+function checkLastMove(element) {
+    let finished = false;
+    if (element.id === 'div7') {
+        const finalX =  parseInt(element.style.left, 10);
+        if( finalX === 400){
+            sayitbtn = document.getElementById('sayit');
+            sayitbtn.style.display = 'inline-block';
+            console.log('finished');
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 function checkForOverlap(element) {
     let isOverlapping = false;
     const rect1 = element.getBoundingClientRect();
