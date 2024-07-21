@@ -5,7 +5,7 @@
 <title>Draggable Divs within Bounds</title>
 <style>
     html {
-    overflow: hidden;
+        overflow: hidden;
         overscroll-behavior: none;
     }
     #container {
@@ -40,6 +40,9 @@
         vertical-align: middle;
         height: auto;
     }
+    .input-button {
+        font-size: 20px;
+    }
 </style>
 </head>
 <body>
@@ -62,8 +65,8 @@
 </div>
 <div class="clock">
     <div id="timer-display">30</div>
-    <button id="reset-button">Clock</button>
-    <button id="pieces-button">Reset</button>
+    <button id="reset-button" class="input-button">Clock</button>
+    <button id="pieces-button" class="input-button">Reset</button>
 </div>
 
 <p style="margin-top:30px;">
