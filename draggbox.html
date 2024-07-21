@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Draggable Divs within Bounds</title>
+<style>
+    #container {
+        width: 600px;
+        height: 600px;
+        position: relative;
+        background-color: lightgrey;
+    }
+    .draggable {
+        position: absolute;
+        background-color: red;
+        cursor: pointer;
+    }
+    .type1 { width: 99px; height: 299px; } /* Más largo verticalmente */
+    .type2 { width: 199px; height: 99px; } /* Más largo horizontalmente */
+    .type3 { width: 99px; height: 199px; } /* Más largo verticalmente */
+    .type2 {
+        background-color: green;
+    }
+    #div7 {
+        background-color: yellow;
+        background: url('img/key.png');
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <!-- Dos divs de 100x300 -->
+    <div id="div1" class="draggable type1"></div>
+    <div id="div2" class="draggable type1"></div>
+    <!-- Cinco divs de 200x100 -->
+    <div id="div3" class="draggable type2"></div>
+    <div id="div4" class="draggable type2"></div>
+    <div id="div5" class="draggable type2"></div>
+    <div id="div6" class="draggable type2"></div>
+    <!-- Cinco divs de 100x200 -->
+    <div id="div7" class="draggable type2"></div>
+    <div id="div8" class="draggable type3"></div>
+    <div id="div9" class="draggable type3"></div>
+    <div id="div10" class="draggable type3"></div>
+    <div id="div11" class="draggable type3"></div>
+    <div id="div12" class="draggable type3"></div>
+</div>
+
+
+<script>
+document.querySelectorAll('.draggable').forEach(draggable => {
+    draggable.addEventListener('mousedown', function(e) {
+        // Guardar la posición inicial antes de comenzar el arrastre
+        this.initialLeft = this.style.left;
+        this.initialTop = this.style.top;
+
+        this.isDragging = true;
+        this.startX = e.clientX - this.offsetLeft;
+        this.startY = e.clientY - this.offsetTop;
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (draggable.isDragging) {
+            let newX = e.clientX - draggable.startX;
+            let newY = e.clientY - draggable.startY;
+
+            // Restricciones de movimiento según la orientación del div
+            if (draggable.classList.contains('type1') || draggable.classList.contains('type3')) {
+                newY = Math.max(0, Math.min(newY, 600 - draggable.offsetHeight));
+                draggable.style.top = newY + 'px';
+            } else if (draggable.classList.contains('type2')) {
+                newX = Math.max(0, Math.min(newX, 600 - draggable.offsetWidth));
+                draggable.style.left = newX + 'px';
+            }
+        }
+    });
+
+    draggable.addEventListener('mouseup', function() {
+        this.isDragging = false;
+        snapToGrid(this);
+        if (checkForOverlap(this)) {
+            // Si hay superposición, revertir a la posición inicial
+            this.style.left = this.initialLeft;
+            this.style.top = this.initialTop;
+        }
+    });
+});
+
+function snapToGrid(element) {
+    const rect = element.getBoundingClientRect();
+    const closestX = Math.round(rect.left / 100) * 100;
+    const closestY = Math.round(rect.top / 100) * 100;
+
+    element.style.left = closestX + 'px';
+    element.style.top = closestY + 'px';
+}
+
+function checkForOverlap(element) {
+    let isOverlapping = false;
+    const rect1 = element.getBoundingClientRect();
+    document.querySelectorAll('.draggable').forEach(other => {
+        if (element !== other) {
+            const rect2 = other.getBoundingClientRect();
+            if (!(rect1.right <= rect2.left || rect1.left >= rect2.right || rect1.bottom <= rect2.top || rect1.top >= rect2.bottom)) {
+                isOverlapping = true;
+            }
+        }
+    });
+    return isOverlapping;
+}
+
+    function initPos(id, x, y) {
+    var element = document.getElementById(id);
+    if (element) {
+        element.style.left = x + 'px';
+        element.style.top = y + 'px';
+    } else {
+        console.log("Elemento no encontrado con ID:", id);
+    }
+}
+
+
+
+
+
+
+
+
+// Inicializar posiciones
+
+initPos('div1', 100, 0);
+initPos('div2', 400, 100);
+
+initPos('div3', 0, 300);
+initPos('div4', 100, 500);
+initPos('div5', 300, 400);
+initPos('div6', 400, 0);
+initPos('div7', 200, 200); //key
+
+initPos('div8', 300, 0);
+initPos('div9', 0, 100);
+initPos('div10', 200, 300);
+initPos('div11', 0, 400);
+initPos('div12', 500, 400);
+
+
+</script>
+</body>
+</html>
