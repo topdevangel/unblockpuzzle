@@ -61,14 +61,14 @@
     <!-- Dos divs de 100x300 -->
     <div id="div1" class="draggable type1"></div>
     <div id="div2" class="draggable type1"></div>
-    <!-- Cinco divs de 200x100 -->
+    <!-- Seis divs de 200x100 -->
     <div id="div3" class="draggable type2"></div>
     <div id="div4" class="draggable type2"></div>
     <div id="div5" class="draggable type2"></div>
     <div id="div6" class="draggable type2"></div>
-    <!-- Cinco divs de 100x200 -->
     <div id="div7" class="draggable type2"></div>
-    <div id="div8" class="draggable type3"></div>
+    <div id="div8" class="draggable type2"></div>
+    <!-- Cuatro divs de 100x200 -->
     <div id="div9" class="draggable type3"></div>
     <div id="div10" class="draggable type3"></div>
     <div id="div11" class="draggable type3"></div>
@@ -85,7 +85,9 @@
     <a href="https://x.com/mar_mafla">@mar_mafla<a>
 </p>
 
-<a id="sayit" href="https://twitter.com/intent/tweet?text=Achieved through a lightweight online trainer, thanks to @marmafla / HamsterKombat hamsters notcoin ">say it out loud!</a>
+<a id="sayit" href="https://twitter.com/intent/tweet?text=Achieved through a lightweight online trainer, thanks to @marmafla / HamsterKombat hamsters notcoin ">say it out loud!
+    <!-- div class="css-175oi2r r-xoduu5 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-1niwhzg r-sdzlij r-xf4iuw r-o7ynqc r-6416eg r-1ny4l3l"></div -->
+</a>
 
 <script>
 document.querySelectorAll('.draggable').forEach(draggable => {
@@ -206,20 +208,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Inicializar posiciones
 function initpieces(){
-    initPos('div1', 100, 0);
-    initPos('div2', 400, 100);
+    initPos('div1', 0, 300);
+    initPos('div2', 400, 0);
 
-    initPos('div3', 0, 300);
-    initPos('div4', 100, 500);
-    initPos('div5', 300, 400);
-    initPos('div6', 400, 0);
-    initPos('div7', 200, 200); //key
+    initPos('div3', 200, 100);
+    initPos('div4', 300, 300);
+    initPos('div5', 100, 400);
+    initPos('div6', 100, 500);
+    initPos('div7',   0, 200); //key
+    initPos('div8', 400, 500);
 
-    initPos('div8', 300, 0);
-    initPos('div9', 0, 100);
-    initPos('div10', 200, 300);
-    initPos('div11', 0, 400);
-    initPos('div12', 500, 400);
+    initPos('div9', 100, 0);
+    initPos('div10', 200, 200);
+    initPos('div11', 300, 400);
+    initPos('div12', 500, 300);
 }
 initpieces();
 
