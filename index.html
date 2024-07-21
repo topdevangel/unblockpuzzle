@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Draggable Divs within Bounds</title>
 <style>
+    html {
+    overflow: hidden;
+        overscroll-behavior: none;
+    }
     #container {
         width: 600px;
         height: 600px;
@@ -30,6 +34,12 @@
         font-size: 60px;
         color: #5c5c5c;
     }
+    #xlogo {
+        width: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        height: auto;
+    }
 </style>
 </head>
 <body>
@@ -52,8 +62,15 @@
 </div>
 <div class="clock">
     <div id="timer-display">30</div>
-    <button id="reset-button">Reset</button>
+    <button id="reset-button">Clock</button>
+    <button id="pieces-button">Reset</button>
 </div>
+
+<p style="margin-top:30px;">
+    <div id="xlogo" dir="ltr" class="css-146c3p1 r-bcqeeo r-qvutc0 r-37j5jr r-q4m81j r-a023e6 r-rjixqe r-b88u0q r-1awozwy r-6koalj r-18u37iz r-16y2uox r-1777fci" style="text-overflow: unset; color: rgb(239, 243, 244);"><svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg><span class="css-1jxf684 r-dnmrzs r-1udh08x r-3s2u2q r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1inkyih r-rjixqe" style="text-overflow: unset;"></span></div>
+    <a href="https://x.com/mar_mafla">@mar_mafla<a>
+</p>
+
 
 <script>
 document.querySelectorAll('.draggable').forEach(draggable => {
@@ -151,31 +168,31 @@ function checkForOverlap(element) {
         console.log("Elemento no encontrado con ID:", id);
     }
 }
-
-
-
-
-
-
-
-
+document.addEventListener('DOMContentLoaded', function() {
+    const piecesInit = document.getElementById('pieces-button');
+    piecesInit.addEventListener('click', () => {
+        //initpieces(30);
+        location.reload();
+    });
+});
 // Inicializar posiciones
+function initpieces(){
+    initPos('div1', 100, 0);
+    initPos('div2', 400, 100);
 
-initPos('div1', 100, 0);
-initPos('div2', 400, 100);
+    initPos('div3', 0, 300);
+    initPos('div4', 100, 500);
+    initPos('div5', 300, 400);
+    initPos('div6', 400, 0);
+    initPos('div7', 200, 200); //key
 
-initPos('div3', 0, 300);
-initPos('div4', 100, 500);
-initPos('div5', 300, 400);
-initPos('div6', 400, 0);
-initPos('div7', 200, 200); //key
-
-initPos('div8', 300, 0);
-initPos('div9', 0, 100);
-initPos('div10', 200, 300);
-initPos('div11', 0, 400);
-initPos('div12', 500, 400);
-
+    initPos('div8', 300, 0);
+    initPos('div9', 0, 100);
+    initPos('div10', 200, 300);
+    initPos('div11', 0, 400);
+    initPos('div12', 500, 400);
+}
+initpieces();
 
 </script>
 <script src="js/countdown.js"></script>
