@@ -7,6 +7,7 @@
     #container {
         width: 600px;
         height: 600px;
+        /*margin: 100px auto;*/
         position: relative;
         background-color: lightgrey;
     }
@@ -24,6 +25,10 @@
     #div7 {
         background-color: yellow;
         background: url('img/key.png');
+    }
+    #timer-display {
+        font-size: 60px;
+        color: #5c5c5c;
     }
 </style>
 </head>
@@ -45,7 +50,10 @@
     <div id="div11" class="draggable type3"></div>
     <div id="div12" class="draggable type3"></div>
 </div>
-
+<div class="clock">
+    <div id="timer-display">30</div>
+    <button id="reset-button">Reset</button>
+</div>
 
 <script>
 document.querySelectorAll('.draggable').forEach(draggable => {
@@ -170,5 +178,6 @@ initPos('div12', 500, 400);
 
 
 </script>
+<script src="js/countdown.js"></script>
 </body>
 </html>
