@@ -49,7 +49,22 @@
 
 <script>
 document.querySelectorAll('.draggable').forEach(draggable => {
-    draggable.addEventListener('mousedown', function(e) {
+    // Manejadores para eventos de mouse
+    draggable.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    draggable.addEventListener('mouseup', endDrag);
+
+    // Manejadores para eventos táctiles
+    draggable.addEventListener('touchstart', startDrag);
+    document.addEventListener('touchmove', drag);
+    draggable.addEventListener('touchend', endDrag);
+
+    function startDrag(e) {
+        // Normalizar eventos táctiles
+        if (e.type === 'touchstart') {
+            e = e.touches[0];
+        }
+
         // Guardar la posición inicial antes de comenzar el arrastre
         this.initialLeft = this.style.left;
         this.initialTop = this.style.top;
@@ -58,10 +73,15 @@ document.querySelectorAll('.draggable').forEach(draggable => {
         this.startX = e.clientX - this.offsetLeft;
         this.startY = e.clientY - this.offsetTop;
         e.preventDefault();
-    });
+    }
 
-    document.addEventListener('mousemove', function(e) {
+    function drag(e) {
         if (draggable.isDragging) {
+            // Normalizar eventos táctiles
+            if (e.type === 'touchmove') {
+                e = e.touches[0];
+            }
+
             let newX = e.clientX - draggable.startX;
             let newY = e.clientY - draggable.startY;
 
@@ -74,17 +94,19 @@ document.querySelectorAll('.draggable').forEach(draggable => {
                 draggable.style.left = newX + 'px';
             }
         }
-    });
+    }
 
-    draggable.addEventListener('mouseup', function() {
-        this.isDragging = false;
-        snapToGrid(this);
-        if (checkForOverlap(this)) {
-            // Si hay superposición, revertir a la posición inicial
-            this.style.left = this.initialLeft;
-            this.style.top = this.initialTop;
+    function endDrag(e) {
+        if (draggable.isDragging) {
+            draggable.isDragging = false;
+            snapToGrid(draggable);
+            if (checkForOverlap(draggable)) {
+                // Si hay superposición, revertir a la posición inicial
+                draggable.style.left = draggable.initialLeft;
+                draggable.style.top = draggable.initialTop;
+            }
         }
-    });
+    }
 });
 
 function snapToGrid(element) {
