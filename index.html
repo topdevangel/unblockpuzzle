@@ -60,17 +60,19 @@
 <div id="container">
     <!-- Dos divs de 100x300 -->
     <div id="div1" class="draggable type1"></div>
-    <div id="div2" class="draggable type1"></div>
-    <!-- Cuatro divs de 200x100 -->
+    <!-- Seis divs de 200x100 -->
+    <div id="div2" class="draggable type2"></div>
     <div id="div3" class="draggable type2"></div>
     <div id="div4" class="draggable type2"></div>
     <div id="div5" class="draggable type2"></div>
+    <div id="div6" class="draggable type2"></div>
     <div id="div7" class="draggable type2"></div>
     <!-- Cuatro divs de 100x200 -->
     <div id="div8" class="draggable type3"></div>
     <div id="div9" class="draggable type3"></div>
     <div id="div10" class="draggable type3"></div>
     <div id="div11" class="draggable type3"></div>
+    <div id="div12" class="draggable type3"></div>
 </div>
 <div class="clock">
     <div id="timer-display">30</div>
@@ -206,18 +208,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Inicializar posiciones
 function initpieces(){
-    initPos('div1', 300, 300);
-    initPos('div2', 500, 100);
+    initPos('div1', 500, 300);
 
-    initPos('div3', 0, 0);
-    initPos('div4', 300, 0);
-    initPos('div5', 400, 400);
-    initPos('div7', 200, 200); //key
+    initPos('div2', 400, 0);
+    initPos('div3', 200, 100);
+    initPos('div4', 0, 300);
+    initPos('div5', 300, 300);
+    initPos('div6', 100, 400);
+    initPos('div7', 0, 200); //key
 
-    initPos('div8', 0, 100);
-    initPos('div9', 100, 100);
-    initPos('div10', 200, 0);
-    initPos('div11', 400, 100);
+    initPos('div8', 100, 0);
+    initPos('div9', 200, 200);
+    initPos('div10', 400, 100);
+    initPos('div11', 0, 400);
+    initPos('div12', 400, 300);
 }
 initpieces();
 
