@@ -22,9 +22,11 @@
     .type1 { width: 99px; height: 299px; } /* Más largo verticalmente */
     .type2 { width: 199px; height: 99px; } /* Más largo horizontalmente */
     .type3 { width: 99px; height: 199px; } /* Más largo verticalmente */
+    .type2.xl { width: 299px; }
 
     .type1 { background: rgb(65 29 29 / 70%) url('img/bg-type1.png') no-repeat center center; }
     .type2 { background: rgb(28 70 28 / 70%) url('img/bg-type2.png') no-repeat center center; }
+    .type2.xl { background: rgb(28 70 28 / 70%) url('img/bg-type2xl.png') no-repeat center center; }
     .type3 { background: rgb(65 29 29 / 70%) url('img/bg-type3.png') no-repeat center center; }
     #div7 {
         background-color: yellow;
@@ -60,19 +62,20 @@
 <div id="container">
     <!-- Dos divs de 100x300 -->
     <div id="div1" class="draggable type1"></div>
-    <!-- Seis divs de 200x100 -->
-    <div id="div2" class="draggable type2"></div>
+    <div id="div2" class="draggable type1"></div>
+    <!-- Cuatro divs de 200x100 -->
     <div id="div3" class="draggable type2"></div>
     <div id="div4" class="draggable type2"></div>
     <div id="div5" class="draggable type2"></div>
-    <div id="div6" class="draggable type2"></div>
     <div id="div7" class="draggable type2"></div>
     <!-- Cuatro divs de 100x200 -->
     <div id="div8" class="draggable type3"></div>
     <div id="div9" class="draggable type3"></div>
     <div id="div10" class="draggable type3"></div>
     <div id="div11" class="draggable type3"></div>
-    <div id="div12" class="draggable type3"></div>
+    <!-- Um div de 100x300 -->
+    <div id="div12" class="draggable type2 xl"></div>
+
 </div>
 <div class="clock">
     <div id="timer-display">30</div>
@@ -208,20 +211,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Inicializar posiciones
 function initpieces(){
-    initPos('div1', 500, 300);
+    initPos('div1', 0, 0);
+    initPos('div2', 400, 100);
 
-    initPos('div2', 400, 0);
-    initPos('div3', 200, 100);
-    initPos('div4', 0, 300);
-    initPos('div5', 300, 300);
-    initPos('div6', 100, 400);
-    initPos('div7', 0, 200); //key
+    initPos('div3', 400, 0);
+    initPos('div4', 400, 400);
+    initPos('div5', 300, 500);
+    initPos('div7', 200, 200); //key
 
-    initPos('div8', 100, 0);
-    initPos('div9', 200, 200);
-    initPos('div10', 400, 100);
-    initPos('div11', 0, 400);
-    initPos('div12', 300, 400);
+    initPos('div8', 300, 0);
+    initPos('div9', 100, 100);
+    initPos('div10', 500, 200);
+    initPos('div11', 200, 400);
+
+    initPos('div12', 0, 300);
 }
 initpieces();
 
