@@ -155,6 +155,19 @@ document.querySelectorAll('.draggable').forEach(draggable => {
             }
         }
     }
+
+    // Agregar un event listener al documento para detectar el mouseup en cualquier parte de la página
+    document.addEventListener('mouseup', function(event) {
+        var container = document.getElementById('container'); // Reemplaza 'container' con el ID de tu contenedor
+
+        // Verificar si el mouse se soltó dentro o fuera del contenedor
+        if (!container.contains(event.target)) {
+            // El mouse se soltó fuera del contenedor, detener el arrastre
+            draggable.isDragging = false;
+            draggable.style.left = draggable.initialLeft;
+            draggable.style.top = draggable.initialTop;
+        }
+    });
 });
 
 function snapToGrid(element) {
