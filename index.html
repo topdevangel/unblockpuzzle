@@ -68,22 +68,25 @@
 </head>
 <body>
 <div id="container">
-    <!-- Dos div de 100x300 -->
+    <!--
+
     <div id="div1" class="draggable type1"></div>
     <div id="div2" class="draggable type1"></div>
-    <!-- Seis divs de 200x100 -->
+    
     <div id="div3" class="draggable type2"></div>
     <div id="div4" class="draggable type2"></div>
     <div id="div5" class="draggable type2"></div>
     <div id="div6" class="draggable type2"></div>
     <div id="div7" class="draggable type2"></div>
     <div id="div8" class="draggable type2"></div>
-    <!-- Tres divs de 100x200 -->
+    
     <div id="div9" class="draggable type3"></div>
     <div id="div10" class="draggable type3"></div>
     <div id="div11" class="draggable type3"></div>
-    <!-- Cero div de 100x300 -->
+    
     <div id="div12" class="draggable type2 xl"></div>
+
+    -->
 </div>
 <div class="clock">
     <div id="timer-display">30</div>
@@ -214,7 +217,15 @@ function checkForOverlap(element) {
     return isOverlapping;
 }
 
-    function initPos(id, x, y) {
+    function createDiv(id, divClass){
+        const div = document.createElement('div');
+        div.id = id;
+        div.classList.add('draggable', divClass);
+        return div;
+    }
+
+    function initPos(id, type, x, y) {
+        createDiv(id, type);
     var element = document.getElementById(id);
     if (element) {
         element.style.left = x + 'px';
@@ -232,21 +243,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Inicializar posiciones
 function initpieces(){
-    initPos('div1', 100, 0);
-    initPos('div2', 500, 100);
+    initPos('div1', 'type1', 100, 0);
+    initPos('div2', 'type1', 500, 100);
 
-    initPos('div3', 200, 0);
-    initPos('div4', 400, 0);
-    initPos('div5', 100, 300);
-    initPos('div6', 400, 400);
-    initPos('div8', 100, 500);
-    initPos('div7', 200, 200); //key
+    initPos('div3', 'type2', 200, 0);
+    initPos('div4', 'type2', 400, 0);
+    initPos('div5', 'type2', 100, 300);
+    initPos('div6', 'type2', 400, 400);
+    initPos('div8', 'type2', 100, 500);
+    initPos('div7', 'type2', 200, 200); //key
 
-    initPos('div9', 0, 300);
-    initPos('div10', 300, 400);
-    initPos('div11', 400, 200);
+    initPos('div9', 'type3', 0, 300);
+    initPos('div10', 'type3', 300, 400);
+    initPos('div11', 'type3', 400, 200);
 
-    initPos('div12', 200, 100);
+    initPos('div12', 'type2 xl', 200, 100);
 }
 initpieces();
 
