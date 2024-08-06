@@ -104,6 +104,7 @@
 </a>
 
 <script>
+initpieces()
 document.querySelectorAll('.draggable').forEach(draggable => {
     // Manejadores para eventos de mouse
     draggable.addEventListener('mousedown', startDrag);
@@ -216,23 +217,17 @@ function checkForOverlap(element) {
     });
     return isOverlapping;
 }
-
-    function createDiv(id, divClass){
-        const div = document.createElement('div');
-        div.id = id;
-        div.classList.add('draggable', divClass);
-        return div;
-    }
-
-    function initPos(id, type, x, y) {
-        createDiv(id, type);
-    var element = document.getElementById(id);
-    if (element) {
-        element.style.left = x + 'px';
-        element.style.top = y + 'px';
+function initPos(id, type, x, y) {
+    const div = document.createElement('div');
+    div.id = id;
+    if(type == 'type2xl'){
+        div.classList.add('draggable', 'type2', 'xl');
     } else {
-        console.log("Elemento no encontrado con ID:", id);
+        div.classList.add('draggable', type);
     }
+    div.style.left = x + 'px';
+    div.style.top = y + 'px';
+    document.getElementById('container').appendChild(div);
 }
 document.addEventListener('DOMContentLoaded', function() {
     const piecesInit = document.getElementById('pieces-button');
@@ -257,9 +252,9 @@ function initpieces(){
     initPos('div10', 'type3', 300, 400);
     initPos('div11', 'type3', 400, 200);
 
-    initPos('div12', 'type2 xl', 200, 100);
+    initPos('div12', 'type2xl', 200, 100);
 }
-initpieces();
+
 
 </script>
 <script src="js/countdown.js"></script>
